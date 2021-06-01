@@ -7,6 +7,24 @@
   pointer-events: none;
 }
 
+table,
+thead,
+tbody,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+input {
+  border: none;
+}
+
+input:focus-visible {
+  outline: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
