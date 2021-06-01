@@ -7,7 +7,6 @@ const animatedComponents = makeAnimated();
 function Selection({ productOptions, selectedProducts, setSelectedProducts }) {
   const productSelection = (products) => {
     
-    console.log(!!selectedProducts.find((pd) => pd.label === products.label));
     if (!selectedProducts.find((pd) => pd.label === products.label)) {
       const newArray = [...selectedProducts, products];
       setSelectedProducts(newArray);
@@ -22,7 +21,6 @@ function Selection({ productOptions, selectedProducts, setSelectedProducts }) {
         components={animatedComponents}
         // isMulti
         options={productOptions}
-        // onChange={(products) => setSelectedProducts(products)}
         onChange={(products) => productSelection(products)}
       />
     </div>

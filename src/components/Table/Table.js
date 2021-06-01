@@ -3,7 +3,6 @@ import Selection from "../Selection/Selection";
 import { IndividualProduct } from "../IndividualProduct/IndividualProduct";
 
 const Table = ({ selectedProducts , setSelectedProducts }) => {
-    console.log(selectedProducts)
   return (
     <div className="d-flex justify-content-center mt-5">
       <table>

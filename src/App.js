@@ -1,38 +1,85 @@
-import "./App.css";
+// import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Selection from "./components/Selection/Selection";
-import Table from "./components/Table/Table";
 import { useState } from "react";
 
+import Select from "react-select";
+
 function App() {
-  const [selectedProducts, setSelectedProducts] = useState([]);
-  // console.log(selectedProducts);
+  
 
   const productOptions = [
-    { value: "Potato", label: "Potato", price: "", discount: "" },
-    { value: "Mojo", label: "Mojo", price: "", discount: "" },
-    { value: "Cocacola", label: "Cocacola", price: "", discount: "" },
+    { value: "Potato", label: "Potato" },
+    { value: "Mojo", label: "Mojo" },
+    { value: "Cocacola", label: "Cocacola" },
   ];
+
+  const [rowDto, setRowDto] = useState([]);
+
+  const addHandler = (v) => {
+    const obj = {
+      ...v,
+      price: "",
+      discount: "",
+      netAmount: "",
+    };
+    setRowDto([...rowDto, obj]);
+  };
+
+  const rowDtoChangeHandler = (name, value, i) => {
+    const data = [...rowDto];
+    data[i][name] = value;
+    setRowDto(data)
+  };
+
   return (
-    <div className="d-flex justify-content-center mt-2 text-center">
+    <div>
       <div className="w-75">
-        <Selection
-          productOptions={productOptions}
-          selectedProducts={selectedProducts}
-          setSelectedProducts={setSelectedProducts}
-        />
-        {/* working code */}
-        {/* {selectedProducts?.length > 0 && (
-          <Table
-            selectedProducts={selectedProducts}
-            setSelectedProducts={setSelectedProducts}
-          />
-        )} */}
-        <Table
-          selectedProducts={selectedProducts}
-          setSelectedProducts={setSelectedProducts}
+        <Select
+          name="item"
+          options={productOptions}
+          onChange={(v) => addHandler(v)}
         />
       </div>
+
+      {/* Table  */}
+      <table className="table">
+        <thead>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Discount</th>
+          <th>Net Amount</th>
+        </thead>
+        <tbody>
+          {rowDto?.map((item, i) => (
+            <tr>
+              <td>{item?.label}</td>
+              <td>
+                <input
+                  name="price"
+                  value={item?.price}
+                  onChange={(e) => {
+                    rowDtoChangeHandler(e.target.name, e.target.value, i);
+                    const netAmount = e.target.value - item?.discount || 0;
+                    rowDtoChangeHandler("netAmount", netAmount, i);
+                  }}
+                />
+              </td>
+              <td>
+                <input
+                  name="discount"
+                  value={item?.discount}
+                  onChange={(e) => {
+                    rowDtoChangeHandler(e.target.name, e.target.value, i);
+                    const netAmount = item?.price - e.target.value;
+                    rowDtoChangeHandler("netAmount", netAmount, i);
+                  }}
+                />
+              </td>
+              <td>{item?.netAmount}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

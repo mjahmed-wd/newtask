@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Formik, Field } from "formik";
 
 export const IndividualProduct = ({
@@ -7,12 +7,10 @@ export const IndividualProduct = ({
   selectedProducts,
   setSelectedProducts,
 }) => {
-  // console.log(product);
   let newArray;
-  let updateSelectedProduct = (value, index) => {
+  const updateSelectedProduct = (value, index) => {
     newArray=[...selectedProducts];
-    // console.log("Update Selected Product", newArray);
-    newArray[index - 1] = value
+    newArray[index - 1] = value;
     setSelectedProducts(newArray)
     
     // setSelectedProducts(selectedProducts)
@@ -26,7 +24,7 @@ export const IndividualProduct = ({
               <td>{index}</td>
               <td>{product?.label}</td>
               <td 
-              onChange={()=>{updateSelectedProduct(values, index)}}
+              onChange={()=>{console.log(values)}}
               >
                 <Field type="number" name="price"  />
               </td>
