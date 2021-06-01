@@ -5,11 +5,14 @@ import makeAnimated from "react-select/animated";
 const animatedComponents = makeAnimated();
 
 function Selection({ productOptions, selectedProducts, setSelectedProducts }) {
-  
   const productSelection = (products) => {
-    // console.log(products);
-    const newArray = [...selectedProducts, products];
-    setSelectedProducts(newArray);
+    
+    console.log(!!selectedProducts.find((pd) => pd.label === products.label));
+    if (!selectedProducts.find((pd) => pd.label === products.label)) {
+      const newArray = [...selectedProducts, products];
+      setSelectedProducts(newArray);
+    }
+    
   };
 
   return (

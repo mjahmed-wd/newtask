@@ -9,11 +9,11 @@ export const IndividualProduct = ({
 }) => {
   // console.log(product);
   let newArray;
-  const updateSelectedProduct = (value, index) => {
+  let updateSelectedProduct = (value, index) => {
     newArray=[...selectedProducts];
     // console.log("Update Selected Product", newArray);
-    selectedProducts[index-1] = value
-    // setSelectedProducts(newArray)
+    newArray[index - 1] = value
+    setSelectedProducts(newArray)
     
     // setSelectedProducts(selectedProducts)
   };
@@ -28,7 +28,7 @@ export const IndividualProduct = ({
               <td 
               onChange={()=>{updateSelectedProduct(values, index)}}
               >
-                <Field type="number" name="price" />
+                <Field type="number" name="price"  />
               </td>
 
               <td 
