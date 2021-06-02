@@ -81,7 +81,7 @@ function App() {
       <table className="table">
         <thead>
           <tr>
-            <th>Item</th>
+            <th>Item Name</th>
             <th>Price</th>
             <th>Quantity</th>
             <th>Discount</th>
