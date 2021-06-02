@@ -16,14 +16,8 @@ function App() {
   const [totalDiscount, setTotalDiscount] = useState(0);
 
   useEffect(() => {
-    const totalAmount = rowDto?.reduce(
-      (acc, item) => acc + +item?.netAmount,
-      0
-    );
-    const totalDiscount = rowDto?.reduce(
-      (acc, item) => acc + +item?.discount,
-      0
-    );
+    const totalAmount = rowDto?.reduce( (acc, item) => acc + +item?.netAmount,0);
+    const totalDiscount = rowDto?.reduce((acc, item) => acc + +item?.discount,0);
     setTotalAmount(totalAmount);
     setTotalDiscount(totalDiscount);
   }, [rowDto]);
