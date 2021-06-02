@@ -39,6 +39,7 @@ function App() {
     setRowDto(data);
   };
 
+  // My solution via onChange
   // const reducer = (name, setter) => {
   //   const netAmountArray = rowDto.map((product) =>
   //     product[name] ? product[name] : 0
